@@ -1,0 +1,39 @@
+name: Update slide 2 climate
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update slide 2
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('form-v2.html')
+          s = p.read_text(encoding='utf-8')
+          new = '''<section class="slide" data-step="2"><h3 class="question">Quel climat recherchez-vous ?</h3><p class="hint">Vous pouvez sélectionner plusieurs réponses.</p><div class="climate-grid"><div class="climate-option"><input id="cl1" type="checkbox" name="climat" value="Froid"><label for="cl1" style="background-image:url('https://www.swedishnomad.com/wp-content/images/2019/09/The-Coldest-country-in-the-world.jpg')"><span>❄️ Froid</span></label></div><div class="climate-option"><input id="cl2" type="checkbox" name="climat" value="Tempéré"><label for="cl2" style="background-image:url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=80')"><span>🌿 Tempéré</span></label></div><div class="climate-option"><input id="cl3" type="checkbox" name="climat" value="Chaud"><label for="cl3" style="background-image:url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=700&q=80')"><span>☀️ Chaud</span></label></div><div class="climate-option"><input id="cl4" type="checkbox" name="climat" value="Tropical"><label for="cl4" style="background-image:url('https://static.barcelo.com/content/dam/bpt/posts/2023/2/solo-female-travel_solo-female-travel-destinations.jpg')"><span>🌴 Tropical</span></label></div><div class="climate-option"><input id="cl5" type="checkbox" name="climat" value="Désertique"><label for="cl5" style="background-image:url('https://images.media.io/ai-effects/travel-reel-desert-look.png')"><span>🏜️ Désertique</span></label></div><div class="climate-option"><input id="cl6" type="checkbox" name="climat" value="Humide"><label for="cl6" style="background-image:url('https://images.squarespace-cdn.com/content/v1/596b2969d2b85786e6892853/93c4bef2-dadf-4052-87d3-8f433965f57f/0K3A0052_2.jpg')"><span>🌧️ Humide</span></label></div></div><div class="actions"><button type="button" class="btn secondary prev">← Retour</button><button type="button" class="btn next">Continuer →</button></div></section>'''
+          s2 = re.sub(r'<section class="slide" data-step="2">.*?(?=<section class="slide" data-step="3">)', new, s, count=1, flags=re.S)
+          if s2 == s:
+              raise SystemExit('Slide 2 not found')
+          p.write_text(s2, encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add form-v2.html
+          git commit -m "Refine slide 2 climate choices" || exit 0
+          git push
+      - name: Remove workflow
+        if: always()
+        run: |
+          rm -f .github/workflows/temporary-slide2-climate.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/temporary-slide2-climate.yml
+          git commit -m "Remove temporary slide 2 workflow" || exit 0
+          git push
