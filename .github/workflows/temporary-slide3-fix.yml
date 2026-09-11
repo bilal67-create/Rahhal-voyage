@@ -1,0 +1,32 @@
+name: RAHHAL slide 3 fix
+on:
+  push:
+    paths:
+      - '.github/workflows/temporary-slide3-fix.yml'
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace slide 3 dropdown with selection cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('form-v2.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''<section class="slide" data-step="3"><h3 class="question">Où souhaitez-vous partir ?</h3><p class="hint">Sélectionnez une zone géographique.</p><select id="destination" name="destination" required><option value="">Sélectionnez une zone</option><option>Europe</option><option>Afrique</option><option>Asie</option><option>Amérique du Nord</option><option>Amérique centrale & Caraïbes</option><option>Amérique du Sud</option><option>Océanie</option></select><div class="actions">'''
+          new = '''<section class="slide" data-step="3"><h3 class="question">Où souhaitez-vous partir ?</h3><p class="hint">Sélectionnez une zone géographique.</p><div class="grid grid3"><div class="opt"><input id="dest1" name="destination" value="Europe" type="radio" required><label for="dest1">Europe</label></div><div class="opt"><input id="dest2" name="destination" value="Afrique" type="radio"><label for="dest2">Afrique</label></div><div class="opt"><input id="dest3" name="destination" value="Asie" type="radio"><label for="dest3">Asie</label></div><div class="opt"><input id="dest4" name="destination" value="Amérique du Nord" type="radio"><label for="dest4">Amérique du Nord</label></div><div class="opt"><input id="dest5" name="destination" value="Amérique centrale & Caraïbes" type="radio"><label for="dest5">Amérique centrale & Caraïbes</label></div><div class="opt"><input id="dest6" name="destination" value="Amérique du Sud" type="radio"><label for="dest6">Amérique du Sud</label></div><div class="opt"><input id="dest7" name="destination" value="Océanie" type="radio"><label for="dest7">Océanie</label></div></div><div class="actions">'''
+          if old not in s:
+              raise SystemExit('Slide 3 target not found')
+          s = s.replace(old, new, 1)
+          s = s.replace("document.getElementById('destination').addEventListener('change',()=>{if(step===2)setTimeout(()=>show(3),180)});", "document.querySelectorAll('input[name=destination]').forEach(r=>r.addEventListener('change',()=>{if(step===2)setTimeout(()=>show(3),180)}));", 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add form-v2.html
+          git rm .github/workflows/temporary-slide3-fix.yml
+          git commit -m 'Change slide 3 to selection cards'
+          git push
