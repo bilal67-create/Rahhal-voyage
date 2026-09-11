@@ -1,0 +1,30 @@
+name: RAHHAL spring image fix
+on:
+  push:
+    paths:
+      - '.github/workflows/temporary-spring-image-fix.yml'
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update only the Frais / doux image
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('form-v2.html')
+          s = p.read_text(encoding='utf-8')
+          old = "https://commons.wikimedia.org/wiki/Special:FilePath/Cherry-blossom-japan_(Unsplash).jpg"
+          new = "https://commons.wikimedia.org/wiki/Special:FilePath/Spring_with_Flowers.jpg"
+          if old not in s:
+              raise SystemExit('Expected Frais / doux image URL not found')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit the change and remove this temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add form-v2.html
+          git rm .github/workflows/temporary-spring-image-fix.yml
+          git commit -m 'Change only Frais / doux image to spring flowers'
+          git push
