@@ -1,0 +1,38 @@
+name: Convert slide 3 to buttons
+on:
+  push:
+    paths:
+      - '.github/workflows/temporary-slide3-buttons.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace slide 3
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('form-v2.html')
+          s=p.read_text()
+          old='<select id="destination" name="destination" required><option value="">Sélectionnez une zone</option><option>Europe</option><option>Afrique</option><option>Asie</option><option>Amérique du Nord</option><option>Amérique centrale & Caraïbes</option><option>Amérique du Sud</option><option>Océanie</option></select>'
+          new='''<div class="grid grid3"><div class="opt"><input id="dest1" name="destination" value="Europe" type="radio" required><label for="dest1">Europe</label></div><div class="opt"><input id="dest2" name="destination" value="Afrique" type="radio"><label for="dest2">Afrique</label></div><div class="opt"><input id="dest3" name="destination" value="Asie" type="radio"><label for="dest3">Asie</label></div><div class="opt"><input id="dest4" name="destination" value="Amérique du Nord" type="radio"><label for="dest4">Amérique du Nord</label></div><div class="opt"><input id="dest5" name="destination" value="Amérique centrale & Caraïbes" type="radio"><label for="dest5">Amérique centrale & Caraïbes</label></div><div class="opt"><input id="dest6" name="destination" value="Amérique du Sud" type="radio"><label for="dest6">Amérique du Sud</label></div><div class="opt"><input id="dest7" name="destination" value="Océanie" type="radio"><label for="dest7">Océanie</label></div></div>'''
+          if old not in s: raise SystemExit('dropdown not found')
+          s=s.replace(old,new)
+          oldjs="document.getElementById('destination').addEventListener('change',()=>{if(document.getElementById('destination').value) nextSlide();});"
+          newjs="document.querySelectorAll('input[name=destination]').forEach(x=>x.addEventListener('change',()=>nextSlide()));"
+          if oldjs in s: s=s.replace(oldjs,newjs)
+          p.write_text(s)
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add form-v2.html
+          git commit -m 'Convert slide 3 destination to buttons' || true
+          git push
+          rm .github/workflows/temporary-slide3-buttons.yml
+          git add .github/workflows/temporary-slide3-buttons.yml
+          git commit -m 'Remove temporary slide 3 workflow'
+          git push
