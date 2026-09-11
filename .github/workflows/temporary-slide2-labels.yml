@@ -1,0 +1,41 @@
+name: RAHHAL slide 2 labels fix
+on:
+  push:
+    paths:
+      - '.github/workflows/temporary-slide2-labels.yml'
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change only slide 2 labels and values
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('form-v2.html')
+          s=p.read_text(encoding='utf-8')
+          reps={
+            'value="Neige / froid"':'value="Neige"',
+            '<span>❄️ Neige / froid</span>':'<span>❄️ Neige</span>',
+            'value="Très chaud"':'value="Désertique"',
+            '<span>☀️ Très chaud</span>':'<span>☀️ Désertique</span>',
+            'value="Frais / doux"':'value="Frais"',
+            '<span>🌿 Frais / doux</span>':'<span>🌿 Frais</span>',
+            'value="Plage / soleil"':'value="Paradisiaque"',
+            '<span>🏖️ Plage / soleil</span>':'<span>🏖️ Paradisiaque</span>',
+            'value="Montagne"':'value="Montagne"',
+            '<span>🏔️ Montagne</span>':'<span>🏔️ Montagne</span>',
+            'value="Ville"':'value="Ville"',
+            '<span>🏙️ Ville</span>':'<span>🏙️ Ville</span>'
+          }
+          for a,b in reps.items(): s=s.replace(a,b,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add form-v2.html
+          git rm .github/workflows/temporary-slide2-labels.yml
+          git commit -m 'Rename slide 2 climate labels'
+          git push
