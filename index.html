@@ -10,7 +10,8 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 .page{position:relative;width:100%;max-width:none;height:100vh;min-height:100vh;margin:0;background:#fff;line-height:0;overflow:hidden}
 .page img{display:block;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
 .start-hit{position:absolute;left:0;top:50%;width:100%;height:25%;z-index:9999;display:block;background:transparent;border:0;padding:0;margin:0;cursor:pointer;pointer-events:auto!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.menu-hit{position:absolute;right:.5%;top:78.7%;width:12.5%;height:4.8%;z-index:10000;border:0;background:transparent;padding:0;margin:0;cursor:pointer;border-radius:50%;pointer-events:auto!important;touch-action:manipulation}
+.menu-hit{position:absolute;right:2.5%;top:2.5%;width:52px;height:44px;z-index:10000;border:0;background:transparent;padding:7px 4px;margin:0;cursor:pointer;pointer-events:auto!important;touch-action:manipulation;display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.menu-hit span{display:block;width:100%;height:4px;background:#fff;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.45)}
 .drawer{position:fixed;inset:0;z-index:100000;visibility:hidden;pointer-events:none;line-height:normal}
 .drawer.open{visibility:visible;pointer-events:auto}
 .drawer-bg{position:absolute;inset:0;background:rgba(4,18,31,.48);backdrop-filter:blur(3px);opacity:0;transition:.25s}
@@ -30,7 +31,7 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 <main class="page">
 <img src="./assets/IMG_2970.jpeg" alt="Rahhal Voyage">
 <a class="start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire"> </a>
-<button type="button" class="menu-hit" id="menuBtn" aria-label="Ouvrir le menu"></button>
+<button type="button" class="menu-hit" id="menuBtn" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
 </main>
 <div class="drawer" id="drawer">
 <div class="drawer-bg" id="drawerBg"></div>
