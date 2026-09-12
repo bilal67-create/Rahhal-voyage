@@ -5,9 +5,53 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rahhal — Parlons de votre prochain voyage</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-serif}.page{position:relative;width:100%;max-width:946px;margin:0 auto;line-height:0;background:#fff}.page img{display:block;width:100%;height:auto}.hit{position:absolute;display:block;background:transparent;border:0;padding:0;cursor:pointer;line-height:normal}.start-hit{left:12.2%;top:74%;width:76%;height:4.5%}.menu-hit{right:2.1%;bottom:2.4%;width:9%;height:5.8%;border-radius:50%}.drawer{position:fixed;inset:0;z-index:30;visibility:hidden;pointer-events:none;line-height:normal}.drawer.open{visibility:visible;pointer-events:auto}.drawer-bg{position:absolute;inset:0;background:rgba(4,18,31,.48);backdrop-filter:blur(3px);opacity:0;transition:.25s}.drawer.open .drawer-bg{opacity:1}.drawer-panel{position:absolute;top:0;right:0;width:min(390px,88%);height:100%;background:#fff;box-shadow:-15px 0 45px rgba(0,0,0,.2);padding:30px;transform:translateX(100%);transition:.3s ease;display:flex;flex-direction:column}.drawer.open .drawer-panel{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:35px}.drawer-head strong{font-size:23px;letter-spacing:1px;color:#102c50}.close{border:0;background:#eef2f5;width:38px;height:38px;border-radius:50%;font-size:22px;color:#102c50;cursor:pointer}.drawer-links{display:grid;gap:12px}.drawer-link{display:block;text-decoration:none;color:#102c50;padding:18px 16px;border:1px solid #dce4ec;border-radius:12px;font-size:15px;font-weight:700}.drawer-link small{display:block;color:#74859a;font-weight:400;font-size:11px;margin-top:5px}.drawer-note{margin-top:auto;color:#8a99a9;font-size:11px;line-height:1.5}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-serif}
+.page{position:relative;width:100%;max-width:946px;margin:0 auto;background:#fff;line-height:0}
+.page img{display:block;width:100%;height:auto}
+.hit{position:absolute;display:block;background:transparent;border:0;padding:0;cursor:pointer;line-height:normal}
+.start-hit{left:12.2%;top:74.0%;width:76%;height:4.5%}
+.menu-hit{right:2.1%;bottom:2.4%;width:9.0%;height:5.8%;border-radius:50%}
+.drawer{position:fixed;inset:0;z-index:30;visibility:hidden;pointer-events:none;line-height:normal}
+.drawer.open{visibility:visible;pointer-events:auto}
+.drawer-bg{position:absolute;inset:0;background:rgba(4,18,31,.48);backdrop-filter:blur(3px);opacity:0;transition:.25s}
+.drawer.open .drawer-bg{opacity:1}
+.drawer-panel{position:absolute;top:0;right:0;width:min(390px,88%);height:100%;background:#fff;box-shadow:-15px 0 45px rgba(0,0,0,.2);padding:30px;transform:translateX(100%);transition:.3s ease;display:flex;flex-direction:column}
+.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:35px}
+.drawer-head strong{font-size:23px;letter-spacing:1px;color:#102c50}
+.close{border:0;background:#eef2f5;width:38px;height:38px;border-radius:50%;font-size:22px;color:#102c50;cursor:pointer}
+.drawer-links{display:grid;gap:12px}
+.drawer-link{display:block;text-decoration:none;color:#102c50;padding:18px 16px;border:1px solid #dce4ec;border-radius:12px;font-size:15px;font-weight:700}
+.drawer-link small{display:block;color:#74859a;font-weight:400;font-size:11px;margin-top:5px}
+.drawer-note{margin-top:auto;color:#8a99a9;font-size:11px;line-height:1.5}
 </style>
 </head>
 <body>
 <main class="page">
-<img src="data:image/jpeg;base64,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...
+<img src="./assets/IMG_3004.png" alt="Rahhal Voyage">
+<a class="hit start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire"></a>
+<button class="hit menu-hit" id="menuBtn" aria-label="Ouvrir le menu"></button>
+</main>
+<div class="drawer" id="drawer">
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer-panel">
+<div class="drawer-head"><strong>Menu</strong><button class="close" id="closeBtn" aria-label="Fermer">×</button></div>
+<div class="drawer-links">
+<a class="drawer-link" href="./index.html">Accueil<small>Retour à la page d’accueil</small></a>
+<a class="drawer-link" href="./form-v2.html">Questionnaire<small>Parlons de votre prochain voyage</small></a>
+</div>
+<div class="drawer-note">Rahhal est un outil de prospection. Les réservations, paiements et contrats sont réalisés directement sur la plateforme iCliGo.</div>
+</aside>
+</div>
+<script>
+const drawer=document.getElementById('drawer');
+const open=()=>drawer.classList.add('open');
+const close=()=>drawer.classList.remove('open');
+document.getElementById('menuBtn').addEventListener('click',open);
+document.getElementById('closeBtn').addEventListener('click',close);
+document.getElementById('drawerBg').addEventListener('click',close);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+</script>
+</body>
+</html>
