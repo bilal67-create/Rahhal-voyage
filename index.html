@@ -9,9 +9,9 @@
 html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-serif}
 .page{position:relative;width:100%;max-width:946px;margin:0 auto;background:#fff;line-height:0}
 .page img{display:block;width:100%;height:auto}
-.hit{position:absolute;display:block;background:transparent;border:0;padding:0;cursor:pointer;line-height:normal}
-.start-hit{left:12.2%;top:74.0%;width:76%;height:4.5%}
-.menu-hit{right:2.1%;bottom:2.4%;width:9.0%;height:5.8%;border-radius:50%}
+.hit{position:absolute;display:block;background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:normal;z-index:20;pointer-events:auto;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.start-hit{left:12.2%;top:74.0%;width:76%;height:4.5%;z-index:21}
+.menu-hit{right:2.1%;bottom:2.4%;width:9.0%;height:5.8%;border-radius:50%;z-index:22}
 .drawer{position:fixed;inset:0;z-index:30;visibility:hidden;pointer-events:none;line-height:normal}
 .drawer.open{visibility:visible;pointer-events:auto}
 .drawer-bg{position:absolute;inset:0;background:rgba(4,18,31,.48);backdrop-filter:blur(3px);opacity:0;transition:.25s}
@@ -30,13 +30,13 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 <body>
 <main class="page">
 <img src="./assets/IMG_3004.png" alt="Rahhal Voyage">
-<a class="hit start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire"></a>
-<button class="hit menu-hit" id="menuBtn" aria-label="Ouvrir le menu"></button>
+<a class="hit start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire" onclick="window.location.href='./form-v2.html';return false;"></a>
+<button type="button" class="hit menu-hit" id="menuBtn" aria-label="Ouvrir le menu"></button>
 </main>
 <div class="drawer" id="drawer">
 <div class="drawer-bg" id="drawerBg"></div>
 <aside class="drawer-panel">
-<div class="drawer-head"><strong>Menu</strong><button class="close" id="closeBtn" aria-label="Fermer">×</button></div>
+<div class="drawer-head"><strong>Menu</strong><button type="button" class="close" id="closeBtn" aria-label="Fermer">×</button></div>
 <div class="drawer-links">
 <a class="drawer-link" href="./index.html">Accueil<small>Retour à la page d’accueil</small></a>
 <a class="drawer-link" href="./form-v2.html">Questionnaire<small>Parlons de votre prochain voyage</small></a>
@@ -46,12 +46,16 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 </div>
 <script>
 const drawer=document.getElementById('drawer');
-const open=()=>drawer.classList.add('open');
-const close=()=>drawer.classList.remove('open');
-document.getElementById('menuBtn').addEventListener('click',open);
-document.getElementById('closeBtn').addEventListener('click',close);
-document.getElementById('drawerBg').addEventListener('click',close);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+const menuBtn=document.getElementById('menuBtn');
+const closeBtn=document.getElementById('closeBtn');
+const drawerBg=document.getElementById('drawerBg');
+function openMenu(e){if(e)e.preventDefault();drawer.classList.add('open');}
+function closeMenu(e){if(e)e.preventDefault();drawer.classList.remove('open');}
+menuBtn.addEventListener('click',openMenu);
+menuBtn.addEventListener('touchend',openMenu,{passive:false});
+closeBtn.addEventListener('click',closeMenu);
+drawerBg.addEventListener('click',closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 </script>
 </body>
 </html>
