@@ -10,8 +10,8 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 .page{position:relative;width:100%;max-width:946px;margin:0 auto;background:#fff;line-height:0}
 .page img{display:block;width:100%;height:auto}
 .hit{position:absolute;display:block;background:transparent;border:0;padding:0;margin:0;cursor:pointer;line-height:normal;z-index:20;pointer-events:auto;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.start-hit{left:12.2%;top:74.0%;width:76%;height:4.5%;z-index:21}
-.menu-hit{right:2.1%;bottom:2.4%;width:9.0%;height:5.8%;border-radius:50%;z-index:22}
+.start-hit{left:8%;top:65%;width:84%;height:9%;z-index:21}
+.menu-hit{right:.5%;top:78%;width:13%;height:9%;border-radius:50%;z-index:22}
 .drawer{position:fixed;inset:0;z-index:30;visibility:hidden;pointer-events:none;line-height:normal}
 .drawer.open{visibility:visible;pointer-events:auto}
 .drawer-bg{position:absolute;inset:0;background:rgba(4,18,31,.48);backdrop-filter:blur(3px);opacity:0;transition:.25s}
@@ -30,7 +30,7 @@ html,body{margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-se
 <body>
 <main class="page">
 <img src="./assets/IMG_3004.png" alt="Rahhal Voyage">
-<a class="hit start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire" onclick="window.location.href='./form-v2.html';return false;"></a>
+<a class="hit start-hit" href="./form-v2.html" aria-label="Commencer le questionnaire"></a>
 <button type="button" class="hit menu-hit" id="menuBtn" aria-label="Ouvrir le menu"></button>
 </main>
 <div class="drawer" id="drawer">
