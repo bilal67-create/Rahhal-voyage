@@ -6,7 +6,8 @@
 <title>Rahhal — Parlons de votre prochain voyage</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#fff;font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#071a29}
 .page{position:relative;width:100%;height:100vh;min-height:100vh;margin:0;background:#fff;line-height:0;overflow:hidden}
 .page img{display:block;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
 .start-hit{position:absolute;left:0;top:50%;width:100%;height:25%;z-index:9999;display:block;background:transparent;border:0;padding:0;margin:0;cursor:pointer;pointer-events:auto!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -26,22 +27,23 @@ html,body{margin:0;padding:0;background:#fff;font-family:Arial,Helvetica,sans-se
 .drawer-link small{display:block;color:#74859a;font-weight:400;font-size:11px;margin-top:5px}
 .drawer-note{margin-top:auto;color:#8a99a9;font-size:11px;line-height:1.5}
 
-/* Ordinateur : conserver les proportions de la maquette sans l'étirer */
+/* Ordinateur : maquette agrandie au centre + IMG_0016 en arrière-plan */
 @media (min-width:701px){
-  html,body{background:#fff}
+  html,body{min-height:100%;background:#071a29 url('./assets/IMG_0016.jpeg') center center/cover no-repeat fixed}
   body{min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:auto}
   .page{
-    width:min(100vw,1920px);
+    width:min(48vw,600px);
     height:auto;
-    aspect-ratio:16/9;
+    aspect-ratio:2/3;
     min-height:0;
     flex:none;
     overflow:hidden;
+    box-shadow:0 12px 45px rgba(0,0,0,.3);
   }
   .page img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:fill;
   }
   .start-hit{top:50%;height:25%}
   .menu-hit{right:1.5%;top:1.5%}
