@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAHHAL — Comment ça marche ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#10252b;--green:#063f3b;--gold:#c99b4a;--cream:#f8f6f1;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:var(--cream)}a{text-decoration:none;color:inherit}
+.nav{height:76px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,70px);position:sticky;top:0;z-index:50;border-bottom:1px solid #eee}
+.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:42px;height:42px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:23px}.brand-name{font-family:'Playfair Display',serif;font-size:25px;letter-spacing:3px}.brand-sub{font-size:11px;color:var(--gold);margin-top:-2px}
+.navlinks{display:flex;align-items:center;gap:28px;font-size:14px}.navlinks a{padding:29px 0}.navlinks a:hover{color:var(--gold)}.navcta{background:var(--green);color:#fff!important;padding:12px 20px!important;border-radius:25px!important}.mobile-menu{display:none;background:none;border:0;font-size:26px;color:var(--green)}
+.intro{padding:95px 5% 70px;text-align:center}.intro-inner{max-width:850px;margin:auto}.kicker{color:#b78331;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase}.intro h1{font-family:'Playfair Display',serif;font-size:clamp(44px,5.5vw,70px);line-height:1.05;font-weight:500;margin:13px 0 24px}.intro h1 em{color:#c19348}.intro p{font-size:18px;line-height:1.65;color:#526167;max-width:720px;margin:0 auto}.intro .arrow{display:block;color:var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-size:22px;margin-top:22px}
+.steps{padding:25px 5% 90px}.steps-inner{max-width:980px;margin:auto}.step{display:grid;grid-template-columns:105px 1fr;gap:35px;padding:38px 0;border-top:1px solid #ddd;align-items:start}.step:last-child{border-bottom:1px solid #ddd}.number{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);line-height:1}.step h2{font-family:'Playfair Display',serif;font-size:31px;font-weight:500;margin:0 0 13px}.step p{font-size:16px;line-height:1.7;color:#526167;max-width:690px;margin:0}.step-link{display:inline-flex;margin-top:20px;background:var(--green);color:#fff;padding:13px 21px;border-radius:25px;font-size:14px;font-weight:700}.step-link:hover{background:#0a514b}
+.final-cta{background:var(--green);color:#fff;text-align:center;padding:70px 5%}.final-cta h2{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,52px);font-weight:500;margin:0 0 15px}.final-cta p{font-size:16px;opacity:.9;margin:0 auto 25px;max-width:580px;line-height:1.6}.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 23px;border-radius:30px;font-weight:700;font-size:14px;background:#d5aa59;color:#fff}
+.footer{background:#052f2c;color:#dce8e5;padding:35px 5%;font-size:12px}.footer-inner{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:30px;align-items:center}.footer a{color:#fff;text-decoration:underline;text-underline-offset:3px}.credits{margin-top:16px;opacity:.65;font-size:11px}
+@media(max-width:900px){.navlinks{display:none}.mobile-menu{display:block}.step{grid-template-columns:75px 1fr;gap:20px}}
+@media(max-width:560px){.nav{height:68px}.brand-name{font-size:21px}.brand-mark{width:36px;height:36px}.intro{padding:70px 22px 50px}.intro p{font-size:16px}.steps{padding:10px 22px 65px}.step{grid-template-columns:55px 1fr;gap:15px;padding:30px 0}.number{font-size:34px}.step h2{font-size:25px}.step p{font-size:15px}.footer-inner{display:block}.footer-inner>div+div{margin-top:15px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<a class="brand" href="./index.html"><span class="brand-mark">⌁</span><span><span class="brand-name">RAHHAL</span><span class="brand-sub">Au-delà du voyage</span></span></a>
+<nav class="navlinks"><a href="./index.html">Accueil</a><a href="./catalogue.html">Destinations</a><a href="./comment-ca-marche.html">Comment ça marche ?</a><a href="./qui-sommes-nous.html">À propos</a><a href="./contact.html">Contact</a><a class="navcta" href="./form-v2.html">✈ Mon projet de voyage</a></nav>
+<button class="mobile-menu" aria-label="Menu">☰</button>
+</header>
+
+<section class="intro"><div class="intro-inner"><div class="kicker">Votre voyage, étape par étape</div><h1>Comment ça <em>marche ?</em></h1><p>Partagez vos envies, vos projets et vos rêves d’évasion. Nous vous accompagnons pour créer l’itinéraire qui vous ressemble.</p><span class="arrow">Voici comment ça fonctionne →</span></div></section>
+
+<section class="steps"><div class="steps-inner">
+<article class="step"><div class="number">01</div><div><h2>Parlez-nous de votre projet</h2><p>Partagez avec nous vos envies, vos besoins et vos idées de voyage grâce à notre questionnaire. Quelques questions nous permettront de mieux comprendre votre projet et de commencer à imaginer votre voyage.</p><a class="step-link" href="./form-v2.html">→ Décrire mon projet</a></div></article>
+<article class="step"><div class="number">02</div><div><h2>Échangeons ensemble</h2><p>Suite à votre questionnaire et aux coordonnées que vous nous aurez laissées, nous vous contacterons pour échanger davantage sur votre projet. Ce premier échange nous permettra de préciser vos attentes et de vous proposer un accompagnement personnalisé.</p></div></article>
+<article class="step"><div class="number">03</div><div><h2>Recevez votre proposition</h2><p>Nous élaborons votre projet et vous envoyons votre devis sous 24 à 48 heures, selon la complexité du voyage. Chaque proposition est pensée en fonction de vos envies, de votre budget et de vos attentes.</p></div></article>
+<article class="step"><div class="number">04</div><div><h2>Validez &amp; réservez</h2><p>Votre projet vous convient ? Il ne reste plus qu'à le valider et à passer à la réservation. Nous vous accompagnons dans les dernières étapes pour que tout soit prêt avant votre départ.</p></div></article>
+<article class="step"><div class="number">05</div><div><h2>Place à l’aventure</h2><p>Les valises sont prêtes, l’itinéraire est tracé… il est temps de profiter. ✈️</p></div></article>
+</div></section>
+
+<section class="final-cta"><h2>Prêt à imaginer votre prochain voyage ?</h2><p>Quelques questions suffisent pour nous parler de votre projet et commencer à construire une expérience qui vous ressemble.</p><a class="btn" href="./form-v2.html">✈ Créer mon projet de voyage</a></section>
+
+<footer class="footer"><div class="footer-inner"><div><strong>RAHHAL</strong> — Au-delà du voyage<br><span class="credits">Photographies : Unsplash, utilisées conformément à leur licence.</span></div><div><a href="./mentions-legales.html">Mentions légales</a> · <a href="./conditions-generales-prestations.html">Conditions générales</a> · <a href="./contact.html">Contact</a></div></div></footer>
+</body>
+</html>
