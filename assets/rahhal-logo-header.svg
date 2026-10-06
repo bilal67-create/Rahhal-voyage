@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 150" role="img" aria-label="RAHHAL Au-delà du voyage">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#b98532"/><stop offset=".5" stop-color="#e0bc76"/><stop offset="1" stop-color="#b98532"/></linearGradient></defs>
+<g transform="translate(8 75)">
+<circle r="54" fill="#fff" stroke="url(#g)" stroke-width="3"/><circle r="43" fill="#10252b" stroke="#d5aa59" stroke-width="2"/>
+<path d="M-31-17 C-20-32 0-35 12-25 L19-13 11-3 2-5 -5 4 -18 1 -26 10 -36 3Z" fill="#d8b36a"/>
+<path d="M7-2 19-7 29 1 25 10 16 12 11 25 2 27-2 14Z" fill="#d8b36a"/>
+<path d="M-1-42v84M-42 0h84M-30-30Q0-12 30-30M-30 30Q0 12 30 30" fill="none" stroke="#d5aa59" stroke-width="1" opacity=".65"/>
+<path d="M0-72 8-52 0-57-8-52Z M72 0 52-8 57 0 52 8Z M0 72 8 52 0 57-8 52Z M-72 0-52 8-57 0-52-8Z" fill="#d5aa59"/>
+<circle r="58" fill="none" stroke="#d5aa59" stroke-width="1" stroke-dasharray="3 8"/>
+</g>
+<g fill="#10252b" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="600" letter-spacing="4">
+<text x="86" y="91">RAHHAL</text>
+</g>
+<g fill="#c99b4a" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="5">
+<text x="330" y="120" text-anchor="middle">AU DELÀ DU VOYAGE</text>
+</g>
+<path d="M190 126H265M395 126H470" stroke="#c99b4a" stroke-width="1.5"/>
+<path d="M675 94 Q720 110 748 83" fill="none" stroke="#c99b4a" stroke-width="4" stroke-linecap="round"/>
+<path d="M748 83 l-13-3 7 11z" fill="#c99b4a"/>
+</svg>
