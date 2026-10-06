@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAHHAL — Test logo minimaliste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#10252b;--green:#063f3b;--gold:#c99b4a;--cream:#f8f6f1}
+*{box-sizing:border-box}body{margin:0;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:var(--cream)}
+a{text-decoration:none;color:inherit}
+.nav{height:76px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,70px);border-bottom:1px solid #eee}
+.logo{display:flex;align-items:center;gap:13px;color:var(--green)}
+.logo-mark{width:38px;height:38px;border:1.5px solid var(--green);border-radius:50%;position:relative;display:grid;place-items:center}
+.logo-mark:before{content:'';width:15px;height:15px;border-left:1.5px solid var(--gold);border-top:1.5px solid var(--gold);transform:rotate(45deg);margin-left:5px}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-size:25px;letter-spacing:5px;font-weight:700}
+.logo-tag{font-size:7px;letter-spacing:2.7px;margin-top:5px;color:#718084}
+.navlinks{display:flex;gap:28px;align-items:center;font-size:14px}.navlinks a:hover{color:var(--gold)}.cta{background:var(--green);color:#fff;padding:12px 20px;border-radius:24px}
+.hero{min-height:calc(100vh - 76px);display:flex;align-items:center;color:#fff;background:linear-gradient(90deg,rgba(4,22,27,.78),rgba(4,22,27,.18)),url('https://images.unsplash.com/photo-1630410594592-f7c33565f787?auto=format&fit=crop&w=2400&q=88') center/cover}
+.hero-inner{width:min(1120px,90%);margin:auto}.eyebrow{font-size:12px;letter-spacing:3px;color:#e0bc76;margin-bottom:18px}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,82px);font-weight:500;line-height:1;margin:0}.hero h1 em{color:#e0bc76;font-style:normal}.hero p{font-size:18px;line-height:1.55;max-width:610px;margin:25px 0}.buttons{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:14px 22px;border-radius:28px;font-weight:700;font-size:14px}.gold{background:#d5aa59}.outline{border:1px solid rgba(255,255,255,.7)}
+.test{background:#fff;text-align:center;padding:65px 20px}.test h2{font-family:'Playfair Display',serif;font-size:42px;font-weight:500;margin:0 0 12px}.test p{color:#667579;margin:0 auto;max-width:620px;line-height:1.7}
+@media(max-width:700px){.nav{height:68px}.navlinks{display:none}.logo-name{font-size:22px}.hero{min-height:calc(100vh - 68px);background-position:58% center}.hero h1{font-size:50px}.hero p{font-size:16px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<a class="logo" href="./accueil-test-logo.html" aria-label="RAHHAL — Au-delà du voyage">
+<span class="logo-mark" aria-hidden="true"></span>
+<span class="logo-text"><span class="logo-name">RAHHAL</span><span class="logo-tag">AU-DELÀ DU VOYAGE</span></span>
+</a>
+<nav class="navlinks"><a href="./index.html">Accueil actuelle</a><a href="./catalogue.html">Destinations</a><a href="./comment-ca-marche.html">Comment ça marche ?</a><a class="cta" href="./form-v2.html?v=3">Mon projet de voyage</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">RAHHAL · AU-DELÀ DU VOYAGE</div>
+<h1>Voyager, c’est<br><em>voir davantage.</em></h1>
+<p>Des destinations uniques, un accompagnement personnalisé et des expériences inoubliables, pensés pour vous.</p>
+<p>« Voyager vous laisse d’abord sans voix, puis vous transforme en conteur. »<br><strong>— Ibn Battuta</strong></p>
+<div class="buttons"><a class="btn gold" href="./form-v2.html?v=3">Créer mon projet de voyage</a><a class="btn outline" href="https://calendly.com/bilal-zeraoui67/30min" target="_blank" rel="noopener">Prendre rendez-vous</a></div>
+</div>
+</section>
+<section class="test">
+<h2>Test du nouveau logo</h2>
+<p>Cette page est une prévisualisation indépendante : aucune autre page du site n’est modifiée. Le logo est volontairement plus simple, plus lisible et plus élégant, avec uniquement RAHHAL, la signature et un symbole discret inspiré du voyage.</p>
+</section>
+</main>
+</body>
+</html>
