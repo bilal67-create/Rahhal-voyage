@@ -1,0 +1,37 @@
+name: Convert homepage MOV videos to MP4
+
+on:
+  push:
+    paths:
+      - 'assets/Accueil/*.mov'
+      - '.github/workflows/convert-homepage-videos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Convert MOV to web MP4
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          for f in assets/Accueil/IMG_0036.mov assets/Accueil/IMG_0128.mov assets/Accueil/IMG_6205.mov; do
+            [ -f "$f" ] || continue
+            out="${f%.mov}.mp4"
+            ffmpeg -y -i "$f" -c:v libx264 -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k "$out"
+          done
+      - name: Commit MP4 files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/Accueil/*.mp4
+          if git diff --cached --quiet; then
+            echo "No MP4 changes."
+          else
+            git commit -m "Ajouter versions MP4 des vidéos de la page d'accueil"
+            git push
+          fi
