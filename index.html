@@ -83,6 +83,7 @@
       v.onended=next;
       v.onerror=()=>{clearTimer();timer=setTimeout(next,1500);};
       const playVideo=()=>{
+        clearTimer();
         const attempt=v.play();
         if(attempt && typeof attempt.catch==='function'){
           attempt.catch(()=>{clearTimer();timer=setTimeout(next,5500);});
