@@ -65,22 +65,45 @@
   const dots=[...document.querySelectorAll('.story-dot')];
   if(!slides.length)return;
   let i=0,timer;
+  function clearTimer(){if(timer){clearTimeout(timer);timer=null;}}
+  function next(){show(i+1);}
   function show(n){
+    clearTimer();
     i=(n+slides.length)%slides.length;
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
     dots.forEach((d,k)=>d.classList.toggle('active',k===i));
-    slides.forEach(s=>{const v=s.querySelector('video'); if(v){v.pause();v.currentTime=0;}});
+    slides.forEach(s=>{
+      const v=s.querySelector('video');
+      if(v){v.onended=null;v.onerror=null;v.pause();try{v.currentTime=0;}catch(e){}}
+    });
     const v=slides[i].querySelector('video');
-    if(v){v.play().catch(()=>{});v.onended=()=>show(i+1);}
+    if(v){
+      v.muted=true;
+      v.playsInline=true;
+      v.onended=next;
+      v.onerror=()=>{clearTimer();timer=setTimeout(next,1500);};
+      const playVideo=()=>{
+        const attempt=v.play();
+        if(attempt && typeof attempt.catch==='function'){
+          attempt.catch(()=>{clearTimer();timer=setTimeout(next,5500);});
+        }
+      };
+      if(v.readyState>=2) playVideo();
+      else {
+        v.addEventListener('canplay',playVideo,{once:true});
+        v.load();
+        timer=setTimeout(next,12000);
+      }
+    } else {
+      timer=setTimeout(next,5500);
+    }
   }
-  function next(){show(i+1);}
   const prevBtn=document.querySelector('.story-prev');
   const nextBtn=document.querySelector('.story-next');
-  function restart(){clearInterval(timer);timer=setInterval(next,5500);}
-  prevBtn.addEventListener('click',()=>{show(i-1);restart();});
-  nextBtn.addEventListener('click',()=>{show(i+1);restart();});
-  dots.forEach((d,k)=>d.addEventListener('click',()=>{show(k);restart();}));
-  show(0); timer=setInterval(next,5500);
+  prevBtn.addEventListener('click',()=>show(i-1));
+  nextBtn.addEventListener('click',()=>show(i+1));
+  dots.forEach((d,k)=>d.addEventListener('click',()=>show(k)));
+  show(0);
 })();
 </script>
 <section class="stats"><div class="stat partner-stat"><span>Partenaire</span><div class="partner-logo-wrap"><img class="partner-logo" src="https://www.icligo.com/iCliGoTheme/logos/icligo-logo.png" alt="iCliGo"></div></div><div class="stat"><span>Destination</span><div class="num">Le monde</div></div><div class="stat"><span>Des souvenirs inoubliables</span><div class="num">Toujours</div></div></section>
